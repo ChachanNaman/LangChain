@@ -1,0 +1,473 @@
+ASSIGNMENT-01
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.impute import SimpleImputer
+
+# load dataset
+df = pd.read_csv("")
+
+print("Showing dataset")
+print(df.head())
+
+# missing values
+print("Missing values before cleaning")
+print(df.isnull().sum())
+
+num_cols = df.select_dtypes(include=np.number).columns
+cat_cols = df.select_dtypes(exclude=np.number).columns
+
+num_imputer = SimpleImputer(strategy='mean')
+df[num_cols] = num_imputer.fit_transform(df[num_cols])
+
+cat_imputer = SimpleImputer(strategy='most_frequent')
+df[cat_cols] = cat_imputer.fit_transform(df[cat_cols])
+
+print("Missing values after cleaning")
+print(df.isnull().sum())
+
+# encoding
+le = LabelEncoder()
+for col in cat_cols:
+    df[col] = le.fit_transform(df[col])
+
+# scaling
+scaler = StandardScaler()
+df[num_cols] = scaler.fit_transform(df[num_cols])
+
+# remove duplicates
+df = df.drop_duplicates()
+
+# histogram
+df.hist(figsize=(10,8))
+plt.suptitle("Histogram")
+plt.show()
+
+# scatter
+if len(num_cols) >= 2:
+    plt.scatter(df[num_cols[0]], df[num_cols[1]])
+    plt.title("Scatter Plot")
+    plt.show()
+
+print("Assignment 1 completed")
+
+ASSIGNMENT-02
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
+
+# load dataset
+df = pd.read_csv("")
+
+print("Showing dataset")
+print(df.head())
+
+# preprocessing
+num_cols = df.select_dtypes(include=np.number).columns
+cat_cols = df.select_dtypes(exclude=np.number).columns
+
+df[num_cols] = SimpleImputer(strategy='mean').fit_transform(df[num_cols])
+df[cat_cols] = SimpleImputer(strategy='most_frequent').fit_transform(df[cat_cols])
+
+le = LabelEncoder()
+for col in cat_cols:
+    df[col] = le.fit_transform(df[col])
+
+scaler = StandardScaler()
+df[num_cols] = scaler.fit_transform(df[num_cols])
+
+# EDA
+df.hist(figsize=(10,8))
+plt.suptitle("Histogram")
+plt.show()
+
+# split
+X = df.drop("target", axis=1)
+y = df["target"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# KNN
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(X_train, y_train)
+print("KNN Accuracy:", accuracy_score(y_test, knn.predict(X_test)))
+
+# Naive Bayes
+nb = GaussianNB()
+nb.fit(X_train, y_train)
+print("Naive Bayes Accuracy:", accuracy_score(y_test, nb.predict(X_test)))
+
+print("Assignment 2 completed")
+
+ASSIGNMENT-03
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.metrics import accuracy_score, confusion_matrix
+
+# load dataset
+df = pd.read_csv("")
+
+print("Showing dataset")
+print(df.head())
+
+# preprocessing
+num_cols = df.select_dtypes(include=np.number).columns
+cat_cols = df.select_dtypes(exclude=np.number).columns
+
+df[num_cols] = SimpleImputer(strategy='mean').fit_transform(df[num_cols])
+df[cat_cols] = SimpleImputer(strategy='most_frequent').fit_transform(df[cat_cols])
+
+le = LabelEncoder()
+for col in cat_cols:
+    df[col] = le.fit_transform(df[col])
+
+scaler = StandardScaler()
+df[num_cols] = scaler.fit_transform(df[num_cols])
+
+# EDA
+df.hist(figsize=(10,8))
+plt.suptitle("Histogram")
+plt.show()
+
+# split
+X = df.drop("target", axis=1)
+y = df["target"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=5
+)
+
+# decision tree
+model = DecisionTreeClassifier()
+model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+
+# tree plot
+plt.figure(figsize=(12,8))
+plot_tree(model, filled=True)
+plt.show()
+
+# k-fold
+scores = cross_val_score(model, X, y, cv=5)
+print("Cross-validation scores:", scores)
+print("Average accuracy:", scores.mean())
+
+print("Assignment 3 completed")
+
+
+***ASSIGNMENT-04****
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+# load dataset
+df = pd.read_csv("")
+
+print("Showing dataset")
+print(df.head())
+
+# missing values
+print("Missing values")
+print(df.isnull().sum())
+
+# preprocessing
+num_cols = df.select_dtypes(include=np.number).columns
+cat_cols = df.select_dtypes(exclude=np.number).columns
+
+df[num_cols] = SimpleImputer(strategy='mean').fit_transform(df[num_cols])
+df[cat_cols] = SimpleImputer(strategy='most_frequent').fit_transform(df[cat_cols])
+
+le = LabelEncoder()
+for col in cat_cols:
+    df[col] = le.fit_transform(df[col])
+
+scaler = StandardScaler()
+df[num_cols] = scaler.fit_transform(df[num_cols])
+
+# EDA
+df.hist(figsize=(10,8))
+plt.suptitle("Histogram")
+plt.show()
+
+# split
+print("Splitting data")
+X = df.drop("target", axis=1)
+y = df["target"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# SVM
+print("Applying SVM")
+svm = SVC(kernel='linear')
+svm.fit(X_train, y_train)
+y_pred_svm = svm.predict(X_test)
+svm_acc = accuracy_score(y_test, y_pred_svm)
+print("SVM Accuracy:", svm_acc)
+
+# Decision Tree
+print("Applying Decision Tree")
+dt = DecisionTreeClassifier()
+dt.fit(X_train, y_train)
+y_pred_dt = dt.predict(X_test)
+dt_acc = accuracy_score(y_test, y_pred_dt)
+print("Decision Tree Accuracy:", dt_acc)
+
+# comparison
+print("Comparison")
+print("SVM Accuracy:", svm_acc)
+print("Decision Tree Accuracy:", dt_acc)
+
+ASSIGNMENT-05
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.impute import SimpleImputer
+
+from sklearn.ensemble import RandomForestClassifier, VotingClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import GaussianNB
+
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+# load dataset
+df = pd.read_csv("")
+
+print("Showing dataset")
+print(df.head())
+
+# missing values
+print("Checking missing values")
+print(df.isnull().sum())
+
+# preprocessing
+num_cols = df.select_dtypes(include=np.number).columns
+cat_cols = df.select_dtypes(exclude=np.number).columns
+
+df[num_cols] = SimpleImputer(strategy='mean').fit_transform(df[num_cols])
+df[cat_cols] = SimpleImputer(strategy='most_frequent').fit_transform(df[cat_cols])
+
+le = LabelEncoder()
+for col in cat_cols:
+    df[col] = le.fit_transform(df[col])
+
+scaler = StandardScaler()
+df[num_cols] = scaler.fit_transform(df[num_cols])
+
+# EDA
+df.hist(figsize=(10,8))
+plt.suptitle("Histogram")
+plt.show()
+
+# split
+print("Splitting data")
+X = df.drop("target", axis=1)
+y = df["target"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+#Random Forest
+print("Applying Random Forest")
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
+
+y_pred_rf = rf.predict(X_test)
+
+print("Random Forest Accuracy:", accuracy_score(y_test, y_pred_rf))
+
+#Eensemble
+print("Applying Ensemble Voting")
+
+dt = DecisionTreeClassifier()
+nb = GaussianNB()
+
+ensemble = VotingClassifier(
+    estimators=[('dt', dt), ('nb', nb)],
+    voting='hard'
+)
+
+ensemble.fit(X_train, y_train)
+y_pred_ens = ensemble.predict(X_test)
+
+print("Ensemble Accuracy:", accuracy_score(y_test, y_pred_ens))
+
+#Performance
+print("Confusion Matrix (Random Forest)")
+print(confusion_matrix(y_test, y_pred_rf))
+
+print("Classification Report (Random Forest)")
+print(classification_report(y_test, y_pred_rf))
+
+ASSIGNMENT-06
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans, DBSCAN
+from sklearn.metrics import silhouette_score
+
+#load data
+df = pd.read_csv("/content/iris.csv")  
+
+print(df.head())
+
+#pre-processing
+# remove nulls
+df = df.dropna()
+
+# keep only numeric columns
+df = df.select_dtypes(include=np.number)
+
+# scaling 
+scaler = StandardScaler()
+X = scaler.fit_transform(df)
+
+#eda
+plt.figure(figsize=(6,5))
+plt.scatter(df.iloc[:,0], df.iloc[:,1])
+plt.title("Original Data")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.show()
+
+#k-means
+kmeans = KMeans(n_clusters=4, random_state=42)
+kmeans_labels = kmeans.fit_predict(X)
+
+plt.figure(figsize=(6,5))
+plt.scatter(df.iloc[:,0], df.iloc[:,1], c=kmeans_labels)
+plt.title("K-Means Clustering")
+plt.show()
+
+#dbscan
+dbscan = DBSCAN(eps=0.5, min_samples=5)
+dbscan_labels = dbscan.fit_predict(X)
+
+plt.figure(figsize=(6,5))
+plt.scatter(df.iloc[:,0], df.iloc[:,1], c=dbscan_labels)
+plt.title("DBSCAN Clustering")
+plt.show()
+
+#performance
+print("K-Means Silhouette Score:",
+      silhouette_score(X, kmeans_labels))
+
+print("DBSCAN Silhouette Score:",
+          silhouette_score(X, dbscan_labels))
+
+
+*ASSIGNMENT-07*
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression, LogisticRegression, Lasso
+from sklearn.metrics import mean_squared_error, r2_score, accuracy_score
+
+# load data
+df = pd.read_csv("/content/iris.csv")
+
+print("Showing data")
+print(df.head())
+
+print("Data info")
+print(df.info())
+
+print("Summary")
+print(df.describe())
+
+print("Missing values")
+print(df.isnull().sum())
+
+# preprocessing
+df = df.dropna()
+
+# encoding (if categorical present)
+df = pd.get_dummies(df, drop_first=True)
+
+X = df.iloc[:, :-1]
+y = df.iloc[:, -1]
+
+# simple EDA plot
+plt.scatter(X.iloc[:,0], y)
+plt.title("Feature vs Target")
+plt.show()
+
+# scaling
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+
+# split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# linear regression
+lin = LinearRegression()
+lin.fit(X_train, y_train)
+y_pred_lin = lin.predict(X_test)
+
+print("Linear Regression")
+print("MSE:", mean_squared_error(y_test, y_pred_lin))
+print("R2:", r2_score(y_test, y_pred_lin))
+
+# logistic regression
+y_class = (y > y.mean()).astype(int)
+
+X_train_c, X_test_c, y_train_c, y_test_c = train_test_split(
+    X, y_class, test_size=0.2, random_state=42
+)
+
+log = LogisticRegression()
+log.fit(X_train_c, y_train_c)
+y_pred_log = log.predict(X_test_c)
+
+print("Logistic Regression")
+print("Accuracy:", accuracy_score(y_test_c, y_pred_log))
+
+# lasso regression
+lasso = Lasso(alpha=0.1)
+lasso.fit(X_train, y_train)
+y_pred_lasso = lasso.predict(X_test)
+
+print("Lasso Regression")
+print("MSE:", mean_squared_error(y_test, y_pred_lasso))
+print("R2:", r2_score(y_test, y_pred_lasso))
