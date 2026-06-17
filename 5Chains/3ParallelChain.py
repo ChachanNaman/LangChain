@@ -16,7 +16,7 @@ prompt1 = PromptTemplate(
 prompt2 = PromptTemplate(
     template = 'Give 5 question answers from following {text}',
     input_variables = ['text']
-)
+)##
 prompt3 = PromptTemplate(
     template = 'Merge the following notes and quiz into single document \n notes -> {notes} and quiz -> {quiz}',
     input_variables = ['notes' ,'quiz']
