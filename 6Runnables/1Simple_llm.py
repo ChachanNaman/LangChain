@@ -10,7 +10,7 @@ prompt = PromptTemplate(
     template = 'Suggest a catch blog title about {topic}',
     input_variables = ['topic']
 )
-
+#
 topic = input('Enter the topic : ')
 
 formatted__input = prompt.format(topic = topic)
