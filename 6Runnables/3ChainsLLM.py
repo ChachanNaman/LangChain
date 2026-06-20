@@ -12,7 +12,7 @@ prompt = PromptTemplate(
     input_variables = ['topic']
 )
 chain = LLMChain(llm = model, prompt = prompt)
-
+#
 
 chain = prompt | model
 
