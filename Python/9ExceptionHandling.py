@@ -9,7 +9,7 @@ except:
 
 #Method-2 : using Exception class
 #
-
+#
 try:
     a=b
 except Exception as ex:
