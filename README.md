@@ -15,6 +15,8 @@ Each folder corresponds to a topic in the playlist and contains small, self-cont
 | [`4OutputParser`](./4OutputParser) | Output Parsers | `StrOutputParser`, `JsonOutputParser`, `StructuredOutputParser`, `PydanticOutputParser` |
 | [`5Chains`](./5Chains) | Chains | Simple, sequential, parallel, and conditional chains using LangChain Expression Language (LCEL) |
 | [`6Runnables`](./6Runnables) | Runnables | `RunnableSequence`, `RunnableParallel`, `RunnableBranch`, `RunnableLambda`, and a PDF-reading example |
+| [`7DocumentLoader`](./7DocumentLoader) | Document Loaders | `TextLoader`, `PyPDFLoader`, `DirectoryLoader`, `WebBaseLoader` — loading text, PDFs, whole directories, and web pages into LangChain `Document` objects (includes a `pdfs/` sample folder) |
+| [`8TextSplitter`](./8TextSplitter) | Text Splitters | Length-based splitting, text/character-based splitting, document-based splitting (code & Markdown aware), and semantic-based splitting for chunking documents before embedding/retrieval |
 
 ## 🧠 Key Concepts Covered
 
@@ -24,6 +26,8 @@ Each folder corresponds to a topic in the playlist and contains small, self-cont
 - **Output Parsers** — parsing raw LLM text output into structured data for models that don't support `with_structured_output()` natively
 - **Chains (LCEL)** — composing `prompt | model | parser` pipelines: simple, sequential, parallel, and conditional (`RunnableBranch`) chains
 - **Runnables** — the building blocks behind LCEL that make chains composable and interoperable
+- **Document Loaders** — bringing external data (text files, PDFs, directories, web pages) into LangChain as `Document` objects, the first step of a RAG pipeline
+- **Text Splitters** — breaking large documents into smaller chunks (by length, character, document structure, or semantic meaning) so they fit context windows and embed well for retrieval
 
 ## 🛠️ Tech Stack
 
