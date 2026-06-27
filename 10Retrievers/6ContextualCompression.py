@@ -25,7 +25,7 @@ docs = [
         The chlorophyll in plant cells captures sunlight during photosynthesis.
         Knights wore armor made of metal. Siege weapons were often used to breach castle walls."""
     ), metadata={"source": "Doc2"}),
-
+#
     Document(page_content=(
         """Basketball was invented by Dr. James Naismith in the late 19th century.
         It was originally played with a soccer ball and peach baskets. NBA is now a global league."""
