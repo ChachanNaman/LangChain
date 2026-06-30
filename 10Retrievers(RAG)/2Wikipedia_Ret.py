@@ -10,8 +10,7 @@ retriever = WikipediaRetriever(top_k_results = 2, lang = "en")
 query = "The geopolitics of india and pakistan perspective to china"
 
 docs = retriever.invoke(query)  #can use invoke as its runnable
-
-
+##
 
 for i, doc in enumerate(docs):
     print(f"---Result {i+1} ---")
