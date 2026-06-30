@@ -17,6 +17,10 @@ Each folder corresponds to a topic in the playlist and contains small, self-cont
 | [`6Runnables`](./6Runnables) | Runnables | `RunnableSequence`, `RunnableParallel`, `RunnableBranch`, `RunnableLambda`, and a PDF-reading example |
 | [`7DocumentLoader`](./7DocumentLoader) | Document Loaders | `TextLoader`, `PyPDFLoader`, `DirectoryLoader`, `WebBaseLoader` — loading text, PDFs, whole directories, and web pages into LangChain `Document` objects (includes a `pdfs/` sample folder) |
 | [`8TextSplitter`](./8TextSplitter) | Text Splitters | Length-based splitting, text/character-based splitting, document-based splitting (code & Markdown aware), and semantic-based splitting for chunking documents before embedding/retrieval |
+| [`9VectorStores(RAG)`](<./9VectorStores(RAG)>) | Vector Stores | What vector stores are, VectorStore vs VectorDB, and a hands-on Chroma vector store walkthrough (`langchain_chroma`) |
+| [`10Retrievers(RAG)`](<./10Retrievers(RAG)>) | Retrievers | Wikipedia retriever, vector store retriever, Maximum Marginal Relevance (MMR), Multi-Query retriever, and Contextual Compression retriever |
+| [`11RAG`](./11RAG) | RAG | Putting it together — Retrieval-Augmented Generation pipeline notes |
+| [`12YTChatbot`](./12YTChatbot) | YouTube Chatbot (RAG project) | End-to-end RAG chatbot (`YTChatbot.ipynb`) using Groq — installs `langchain`, `langchain-community`, `langchain-groq`, `sentence-transformers`, `faiss-cpu` for retrieval over YouTube content |
 
 ## 🧠 Key Concepts Covered
 
@@ -28,12 +32,17 @@ Each folder corresponds to a topic in the playlist and contains small, self-cont
 - **Runnables** — the building blocks behind LCEL that make chains composable and interoperable
 - **Document Loaders** — bringing external data (text files, PDFs, directories, web pages) into LangChain as `Document` objects, the first step of a RAG pipeline
 - **Text Splitters** — breaking large documents into smaller chunks (by length, character, document structure, or semantic meaning) so they fit context windows and embed well for retrieval
+- **Vector Stores** — storing document embeddings for similarity search; the difference between a VectorStore (abstraction) and a VectorDB (storage engine), with a hands-on Chroma example
+- **Retrievers** — pulling relevant chunks back out of a vector store via similarity search, MMR (for diversity), Multi-Query (multiple reformulated queries), and Contextual Compression (trimming irrelevant content from retrieved chunks)
+- **RAG (Retrieval-Augmented Generation)** — combining retrieval with generation so the LLM answers grounded in retrieved context instead of relying purely on parametric knowledge
+- **End-to-End RAG Project** — a YouTube-video chatbot that loads transcripts, chunks and embeds them, retrieves relevant context, and answers questions using Groq as the LLM backend
 
 ## 🛠️ Tech Stack
 
 - Python 3.12
-- [LangChain](https://www.langchain.com/) (`langchain`, `langchain-core`)
+- [LangChain](https://www.langchain.com/) (`langchain`, `langchain-core`, `langchain-community`, `langchain-groq`, `langchain_chroma`)
 - LLM providers: OpenAI, Anthropic, Groq, Google Gemini, HuggingFace
+- Vector store & retrieval: `chromadb`, `faiss-cpu`, `sentence-transformers`
 - `python-dotenv` for environment variable management
 - `pydantic` for data validation
 
