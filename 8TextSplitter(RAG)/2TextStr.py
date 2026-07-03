@@ -6,7 +6,7 @@
 #chunk_size = 10
 #first we see for /n/n para then divide it into paras and if still greater 
 # than chunk size then divide more , now divide on \n basis then divide into sentenses 
-#still greater than aloowed limit, now on space basis word wise "_" 
+#still greater than allowed limit, now on space basis word wise "_" 
 #now it tries to join if less than limit till chunk size(merging again)
 #count spaces also in between words 
 
