@@ -34,6 +34,10 @@ beautifulsoup4
 requests
 youtube-transcript-api
 
+# Tools & agents
+duckduckgo-search
+ddgs
+
 # Structured output & data validation
 pydantic
 

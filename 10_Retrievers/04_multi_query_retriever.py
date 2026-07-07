@@ -56,34 +56,26 @@ for i, doc in enumerate(multiquery_results):
     print(f"\n--- Result {i+1} ---")
     print(doc.page_content)
 
-
---- Result 1 ---
-Drinking sufficient water throughout the day helps maintain metabolism and energy.
-
---- Result 2 ---
-Mindfulness and controlled breathing lower cortisol and improve mental clarity.
-
---- Result 3 ---
-Regular walking boosts heart health and can reduce symptoms of depression.
-
---- Result 4 ---
-Deep sleep is crucial for cellular repair and emotional regulation.
-
---- Result 5 ---
-The solar energy system in modern homes helps balance electricity demand.
-******************************************************************************************************************************************************
-
---- Result 1 ---
-Drinking sufficient water throughout the day helps maintain metabolism and energy.
-
---- Result 2 ---
-Mindfulness and controlled breathing lower cortisol and improve mental clarity.
-
---- Result 3 ---
-Regular walking boosts heart health and can reduce symptoms of depression.
-
---- Result 4 ---
-Consuming leafy greens and fruits helps detox the body and improve longevity.
-
---- Result 5 ---
-Deep sleep is crucial for cellular repair and emotional regulation.
+# Example output - similarity_results (plain similarity search, misses some relevant docs):
+# --- Result 1 ---
+# Drinking sufficient water throughout the day helps maintain metabolism and energy.
+# --- Result 2 ---
+# Mindfulness and controlled breathing lower cortisol and improve mental clarity.
+# --- Result 3 ---
+# Regular walking boosts heart health and can reduce symptoms of depression.
+# --- Result 4 ---
+# Deep sleep is crucial for cellular repair and emotional regulation.
+# --- Result 5 ---
+# The solar energy system in modern homes helps balance electricity demand.
+#
+# Example output - multiquery_results (reformulated queries surface a more relevant doc):
+# --- Result 1 ---
+# Drinking sufficient water throughout the day helps maintain metabolism and energy.
+# --- Result 2 ---
+# Mindfulness and controlled breathing lower cortisol and improve mental clarity.
+# --- Result 3 ---
+# Regular walking boosts heart health and can reduce symptoms of depression.
+# --- Result 4 ---
+# Consuming leafy greens and fruits helps detox the body and improve longevity.
+# --- Result 5 ---
+# Deep sleep is crucial for cellular repair and emotional regulation.

@@ -2,27 +2,40 @@
 
 My notes, code, and hands-on experiments while learning **Generative AI using LangChain**, following the [CampusX YouTube playlist](https://www.youtube.com/playlist?list=PLKnIA16_RmvaTbihpo4MtzVm4XOQa0ER0).
 
-Each folder corresponds to a topic in the playlist and contains small, self-contained Python scripts / notebooks I wrote while following along, along with my own notes (`README.md`) summarizing the key concepts.
+Every folder is numbered in the order the playlist builds on itself — start at `00` and work forward, or jump straight to whatever topic you need. Each one contains small, self-contained Python scripts / notebooks, plus its own `README.md` with the concept notes and a full file-by-file breakdown — the table below is the map, each folder's own README is the territory.
 
-## 📂 Repository Structure
+## 📂 Learning Path
 
-| Folder | Topic | What's inside |
-|---|---|---|
-| [`00_Python_Refresher`](./00_Python_Refresher) | Python fundamentals | Functions, lambda, map/filter, list comprehension, strings, iterables, OOP, exception handling — refresher before diving into LangChain |
-| [`01_LangChain_Models`](./01_LangChain_Models) | Models | Chat models (OpenAI, Anthropic, HuggingFace — API & local), embedding models, and document similarity |
-| [`02_LangChain_Prompts`](./02_LangChain_Prompts) | Prompts | Static vs. dynamic prompts, `PromptTemplate`, System/Human/AI messages, multi-turn chat history, `ChatPromptTemplate`, `MessagePlaceholder` |
-| [`03_Structured_Output`](./03_Structured_Output) | Structured Output | `TypedDict`, `Annotated`, `Pydantic`, JSON Schema, and `with_structured_output()` |
-| [`04_Output_Parsers`](./04_Output_Parsers) | Output Parsers | `StrOutputParser`, `JsonOutputParser`, `StructuredOutputParser`, `PydanticOutputParser` |
-| [`05_Chains`](./05_Chains) | Chains | Simple, sequential, parallel, and conditional chains using LangChain Expression Language (LCEL) |
-| [`06_Runnables`](./06_Runnables) | Runnables | `RunnableSequence`, `RunnableParallel`, `RunnableBranch`, `RunnableLambda`, and a PDF-reading example |
-| [`07_Document_Loaders`](./07_Document_Loaders) | Document Loaders | `TextLoader`, `PyPDFLoader`, `DirectoryLoader`, `WebBaseLoader` — loading text, PDFs, whole directories, and web pages into LangChain `Document` objects (includes a `pdfs/` sample folder) |
-| [`08_Text_Splitters`](./08_Text_Splitters) | Text Splitters | Length-based splitting, text/character-based splitting, document-based splitting (code & Markdown aware), and semantic-based splitting for chunking documents before embedding/retrieval |
-| [`09_Vector_Stores`](./09_Vector_Stores) | Vector Stores | What vector stores are, VectorStore vs VectorDB, and a hands-on Chroma vector store walkthrough (`langchain_chroma`) |
-| [`10_Retrievers`](./10_Retrievers) | Retrievers | Wikipedia retriever, vector store retriever, Maximum Marginal Relevance (MMR), Multi-Query retriever, and Contextual Compression retriever |
-| [`11_RAG`](./11_RAG) | RAG | Putting it together — Retrieval-Augmented Generation pipeline notes |
-| [`12_Project_YouTube_Chatbot`](./12_Project_YouTube_Chatbot) | YouTube Chatbot (RAG project) | End-to-end RAG chatbot (`youtube_chatbot_rag.ipynb`) that answers questions about a YouTube video's transcript |
-| [`13_Tools`](./13_Tools) | Tools | Built-in tools, custom tools, and toolkits — packaging Python functions so an LLM can call them |
-| [`14_Tool_Calling`](./14_Tool_Calling) | Tool Calling | Tool binding, tool calling, and a worked currency-conversion example |
+| # | Folder | Topic | What's inside |
+|---|---|---|---|
+| 00 | [`Python_Refresher`](./00_Python_Refresher) | Python fundamentals | Functions, lambda, map/filter, list comprehension, strings, iterables, OOP, exception handling |
+| 01 | [`LangChain_Models`](./01_LangChain_Models) | Models | Chat models (OpenAI, Anthropic, HuggingFace — API & local) and embedding models |
+| 02 | [`LangChain_Prompts`](./02_LangChain_Prompts) | Prompts | `PromptTemplate`, System/Human/AI messages, multi-turn chat history, `ChatPromptTemplate`, `MessagesPlaceholder` |
+| 03 | [`Structured_Output`](./03_Structured_Output) | Structured Output | `TypedDict`, `Pydantic`, JSON Schema, and `with_structured_output()` |
+| 04 | [`Output_Parsers`](./04_Output_Parsers) | Output Parsers | `StrOutputParser`, `JsonOutputParser`, `StructuredOutputParser`, `PydanticOutputParser` |
+| 05 | [`Chains`](./05_Chains) | Chains | Simple, sequential, parallel, and conditional chains using LCEL |
+| 06 | [`Runnables`](./06_Runnables) | Runnables | The interface behind LCEL — built from scratch, then the real `RunnableSequence`/`Parallel`/`Lambda`/`Branch` |
+| 07 | [`Document_Loaders`](./07_Document_Loaders) | Document Loaders | Loading text, PDFs, whole directories, and web pages into LangChain `Document` objects |
+| 08 | [`Text_Splitters`](./08_Text_Splitters) | Text Splitters | Length, structure, language-aware, and semantic chunking strategies |
+| 09 | [`Vector_Stores`](./09_Vector_Stores) | Vector Stores | What a vector store is, vs. a vector DB, and a hands-on Chroma walkthrough |
+| 10 | [`Retrievers`](./10_Retrievers) | Retrievers | Similarity search, MMR, Multi-Query, Contextual Compression, Wikipedia |
+| 11 | [`RAG`](./11_RAG) | RAG concepts | Why RAG beats fine-tuning for knowledge injection, and the full indexing → retrieval → generation pipeline |
+| 12 | [`Project_YouTube_Chatbot`](./12_Project_YouTube_Chatbot) | RAG project | End-to-end: a chatbot that answers questions about any YouTube video's transcript |
+| 13 | [`Tools`](./13_Tools) | Tools | Built-in tools, three ways to write a custom tool, and toolkits |
+| 14 | [`Tool_Calling`](./14_Tool_Calling) | Tool Calling | Binding → calling → execution, plus a multi-tool currency-conversion example |
+
+## 🧭 How the pieces fit together
+
+```
+Models (01) + Prompts (02) ──► Chains (05) / Runnables (06) ──► Structured Output (03) / Output Parsers (04)
+                                                                            │
+Document Loaders (07) ─► Text Splitters (08) ─► Vector Stores (09) ─► Retrievers (10)
+                                                                            │
+                                                                            ▼
+                                                            RAG (11) ─► YouTube Chatbot project (12)
+
+Tools (13) ─► Tool Calling (14)  — a separate track: giving an LLM the ability to act, not just retrieve
+```
 
 ## 🧠 Key Concepts Covered
 
@@ -31,13 +44,13 @@ Each folder corresponds to a topic in the playlist and contains small, self-cont
 - **Structured Output** — forcing LLMs to return data in a well-defined format (JSON) instead of free-form text, using `TypedDict`, `Pydantic`, or JSON Schema
 - **Output Parsers** — parsing raw LLM text output into structured data for models that don't support `with_structured_output()` natively
 - **Chains (LCEL)** — composing `prompt | model | parser` pipelines: simple, sequential, parallel, and conditional (`RunnableBranch`) chains
-- **Runnables** — the building blocks behind LCEL that make chains composable and interoperable
+- **Runnables** — the shared interface behind every LCEL component, built from scratch once to demystify it
 - **Document Loaders** — bringing external data (text files, PDFs, directories, web pages) into LangChain as `Document` objects, the first step of a RAG pipeline
 - **Text Splitters** — breaking large documents into smaller chunks (by length, character, document structure, or semantic meaning) so they fit context windows and embed well for retrieval
 - **Vector Stores** — storing document embeddings for similarity search; the difference between a VectorStore (abstraction) and a VectorDB (storage engine), with a hands-on Chroma example
 - **Retrievers** — pulling relevant chunks back out of a vector store via similarity search, MMR (for diversity), Multi-Query (multiple reformulated queries), and Contextual Compression (trimming irrelevant content from retrieved chunks)
-- **RAG (Retrieval-Augmented Generation)** — combining retrieval with generation so the LLM answers grounded in retrieved context instead of relying purely on parametric knowledge
-- **Tools & Tool Calling** — packaging Python functions/APIs so an LLM can decide when and how to call them, and binding tool schemas to a model
+- **RAG (Retrieval-Augmented Generation)** — combining retrieval with generation so the LLM answers grounded in retrieved context instead of relying purely on parametric knowledge, and why it usually beats fine-tuning for knowledge injection
+- **Tools & Tool Calling** — packaging Python functions/APIs so an LLM can decide when and how to call them, binding tool schemas to a model, and the binding → calling → execution split
 - **End-to-End RAG Project** — a YouTube-video chatbot that loads transcripts, chunks and embeds them, retrieves relevant context, and answers questions
 
 ## 🛠️ Tech Stack
@@ -69,11 +82,15 @@ Each folder corresponds to a topic in the playlist and contains small, self-cont
    GROQ_API_KEY=your_key_here
    GOOGLE_API_KEY=your_key_here
    HUGGINGFACEHUB_API_TOKEN=your_key_here
+   EXCHANGE_RATE_API_KEY=your_key_here
    ```
 4. Run any script
    ```bash
-   python 05_Chains/1Simple_chain.py
+   python 05_Chains/1_Simple_chain.py
    ```
+   ...or open any `.ipynb` notebook in Jupyter / VS Code.
+
+Each folder's own `README.md` lists exactly which keys and packages *that* folder needs — you don't need every key above unless you're running everything.
 
 ## 📺 Reference
 

@@ -10,6 +10,17 @@ from langchain_core.documents import Document
 
 from langchain_community.vectorstores import FAISS
 
+# Source documents - note several near-duplicate LangChain sentences,
+# so a plain similarity search would return 3 near-identical results
+docs = [
+    Document(page_content="LangChain is used to build LLM based applications."),
+    Document(page_content="LangChain helps developers build LLM based applications easily."),
+    Document(page_content="LangChain is a framework for developing LLM powered apps."),
+    Document(page_content="Embeddings are vector representations of text."),
+    Document(page_content="Embeddings convert text into high dimensional vectors."),
+    Document(page_content="LangChain supports Chroma, FAISS, Pinecone, and more."),
+]
+
 # Initialize OpenAI embeddings
 embedding_model = OpenAIEmbeddings()
 

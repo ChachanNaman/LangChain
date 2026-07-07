@@ -62,11 +62,8 @@ for i, doc in enumerate(compressed_results):
     print(f"\n--- Result {i+1} ---")
     print(doc.page_content)
 
-
---- Result 1 ---
-Photosynthesis is the process by which green plants convert sunlight into energy.
-
---- Result 2 ---
-The chlorophyll in plant cells captures sunlight during photosynthesis.
-
-########
+# Example output - only the photosynthesis-relevant sentence survives from each doc:
+# --- Result 1 ---
+# Photosynthesis is the process by which green plants convert sunlight into energy.
+# --- Result 2 ---
+# The chlorophyll in plant cells captures sunlight during photosynthesis.

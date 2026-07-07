@@ -7,3 +7,5 @@ __pycache__/
 tempCodeRunnerFile.py
 .ipynb_checkpoints/
 *.egg-info/
+my_chroma_db/
+*.faiss
