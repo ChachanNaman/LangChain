@@ -1,0 +1,45 @@
+# Consolidated dependencies for every folder in this repo.
+# Install once at the root and you can run any script/notebook here:
+#   python -m venv venv && source venv/bin/activate
+#   pip install -r requirements.txt
+
+# LangChain core
+langchain
+langchain-core
+langchain-community
+langchain-experimental
+langchain-text-splitters
+
+# LLM providers
+langchain-openai
+openai
+langchain-anthropic
+langchain-groq
+langchain-google-genai
+google-generativeai
+langchain-huggingface
+transformers
+huggingface-hub
+
+# Vector stores & retrieval
+langchain-chroma
+chromadb
+faiss-cpu
+sentence-transformers
+wikipedia
+
+# Document loading & splitting
+pypdf
+beautifulsoup4
+requests
+youtube-transcript-api
+
+# Structured output & data validation
+pydantic
+
+# Misc utilities
+python-dotenv
+numpy
+scikit-learn
+streamlit
+jupyter

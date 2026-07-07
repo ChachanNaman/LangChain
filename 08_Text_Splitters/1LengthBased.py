@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_community.document_loaders import PyPDFLoader
 
-loader = PyPDFLoader('d111.pdf')
+loader = PyPDFLoader('sample.pdf')
 
 docs = loader.load()
  
